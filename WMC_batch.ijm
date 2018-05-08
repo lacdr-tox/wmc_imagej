@@ -2,6 +2,8 @@
 #@ String(label="File extension (eg. 'tif', leave empty to allow all files)", value="", persist=false) suffix
 #@ String(label="Filter RegExp (will override extension check)", value="", persist=false) pattern
 #@ BigDecimal(label="Artifact diameter for gaussian blurring", value=1.8, persist=false) g_size
+#@ Boolean(label="Use separate output directory?", value=false, persist=false) use_outdir
+#@ File(label="Output directory", value="", style="directory", persist=false) outdir
 #@ BigDecimal(label="Rolling ball radius", value=12, persist=false) r_size
 #@ BigDecimal(label="Noise tolerance level", value=20, persist=false) noise
 #@ BigDecimal(label="Intensity seed for background", value=100, persist=false) low_seed
@@ -13,7 +15,7 @@
 #@ Boolean(label="Use paraboloid kernel for objects", value=false, persist=false) paraboloid
 #@ Boolean(label="Quit afterwards", value=false, persist=false) quit
 
-function getBaseName(path) {
+function stripExtension(path) {
 	dotIndex = lastIndexOf(path, ".");
 	if (dotIndex!=-1) {
 		return substring(path, 0, dotIndex);
@@ -23,8 +25,10 @@ function getBaseName(path) {
 }
 
 function runWMCSegment(input, g_size, r_size, noise, low_seed, high_seed, low_bound, high_bound, min_std, equalize, paraboloid) {
-	open(input);
+	//Open file without popup
+	run("Bio-Formats Windowless Importer", "open=[" + input + "]"); 
 
+	//Do the WMC Segment
 	if (!equalize && !paraboloid) 
 		run("WMC Segment", "g_size=&g_size r_size=&r_size noise=&noise low_seed=&low_seed high_seed=&high_seed low_bound=&low_bound high_bound=&high_bound min_std=&min_std ");
 	else if (equalize && !paraboloid) 
@@ -34,10 +38,16 @@ function runWMCSegment(input, g_size, r_size, noise, low_seed, high_seed, low_bo
 	else 
 		run("WMC Segment", "g_size=&g_size r_size=&r_size noise=&noise low_seed=&low_seed high_seed=&high_seed low_bound=&low_bound high_bound=&high_bound min_std=&min_std is_equalize use_paraboloid");			
 
-	
-	ofname = getBaseName(input);
-	ofname = ofname + '_WMCMask';
-	saveAs("TIF", ofname);
+	//Determine output name
+	dir = File.getParent(input);
+	if(use_outdir) {
+		dir = outdir;
+	}
+	fname = stripExtension(File.getName(input));
+	ofname = dir + File.separator + fname + '_WMCMask.tiff';
+
+	//Save and close
+	saveAs("TIFF", ofname);
 	run("Close All");
 }
 
@@ -70,6 +80,17 @@ function processFolder(folder) {
 		file = folder + File.separator + fileList[f];
         processFile(file, true);
     }
+}
+
+
+//MAIN
+
+if(use_outdir) {
+	if(!File.exists(outdir)) {
+		exit("Directory " + outdir + " does not exist.");
+	} else {
+		print("Using " + outdir + " as output directory.");
+	}
 }
 
 setBatchMode(true);
