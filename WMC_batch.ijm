@@ -13,6 +13,15 @@
 #@ Boolean(label="Use paraboloid kernel for objects", value=false, persist=false) paraboloid
 #@ Boolean(label="Quit afterwards", value=false, persist=false) quit
 
+function getBaseName(path) {
+	dotIndex = lastIndexOf(path, ".");
+	if (dotIndex!=-1) {
+		return substring(path, 0, dotIndex);
+	} else {
+		return path;
+	}
+}
+
 function runWMCSegment(input, g_size, r_size, noise, low_seed, high_seed, low_bound, high_bound, min_std, equalize, paraboloid) {
 	open(input);
 
@@ -25,8 +34,10 @@ function runWMCSegment(input, g_size, r_size, noise, low_seed, high_seed, low_bo
 	else 
 		run("WMC Segment", "g_size=&g_size r_size=&r_size noise=&noise low_seed=&low_seed high_seed=&high_seed low_bound=&low_bound high_bound=&high_bound min_std=&min_std is_equalize use_paraboloid");			
 
-	ofname =  input + '_WMCMask';
-	saveAs("PNG", ofname);
+	
+	ofname = getBaseName(input);
+	ofname = ofname + '_WMCMask';
+	saveAs("TIF", ofname);
 	run("Close All");
 }
 
