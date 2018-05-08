@@ -8,7 +8,7 @@
 
 * Install `WMC Segment` in ImageJ
 
-Download [DImageSVN_.jar](https://github.com/lacdr-tox/cellprofiler-plugins/blob/master/ij_plugins/DImageSVN_.jar) and place it in your ImageJ plugin directory. You should be able to use *WMC Segment* from *Plugins > Analysis > Segmentation > WMC Segment*. You can use this to determine the optimal settings for batch mode.
+  Download [DImageSVN_.jar](https://github.com/lacdr-tox/cellprofiler-plugins/blob/master/ij_plugins/DImageSVN_.jar) and place it in your ImageJ plugin directory. You should be able to use *WMC Segment* from *Plugins > Analysis > Segmentation > WMC Segment*. You can use this to determine the optimal settings for batch mode.
 
 * Download [`WMC_batch.ijm`](https://github.com/lacdr-tox/wmc_imagej/raw/master/WMC_batch.ijm) by saving it as `WMC_batch.ijm` (make sure it ends with `.ijm` and not `.txt`, it doesn't matter where you save it).
 
