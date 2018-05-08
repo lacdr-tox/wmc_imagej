@@ -2,21 +2,30 @@
 
 **Work in progress, feel free to edit**
 
-## Install WMCSegment in ImageJ
+## Installation
 
-Download [DImageSVN_.jar](https://github.com/lacdr-tox/cellprofiler-plugins/blob/master/ij_plugins/DImageSVN_.jar) and place it in your ImageJ plugin directory. You should be able to use *WMC Segment* from *Plugins > Analysis > Segmentation > WMC Segment*
+**Make sure you use [Fiji](https://fiji.sc/) or [ImageJ2](https://imagej.net/ImageJ2), the ImageJ that ISSC installs may not work!**
 
-## Use the ImageJ script
+* Install `WMC Segment` in ImageJ
 
-Cannot be installed as macro, but must be run as script (could be that it doesn't work with ImageJ1, use ImageJ2 (included in Fiji)):
+Download [DImageSVN_.jar](https://github.com/lacdr-tox/cellprofiler-plugins/blob/master/ij_plugins/DImageSVN_.jar) and place it in your ImageJ plugin directory. You should be able to use *WMC Segment* from *Plugins > Analysis > Segmentation > WMC Segment*. You can use this to determine the optimal settings for batch mode.
 
-* Using the script editor: Use `[` to open the script editor and run
-* Using the commandline: Use the syntax as described in [Scripting Headless](https://imagej.net/Scripting_Headless) (although, running with `--headless` doesn't work, `WMCSegment` requires a gui (something to fix later)). Example uses:
+* Download [`WMC_batch.ijm`](https://github.com/lacdr-tox/wmc_imagej/raw/master/WMC_batch.ijm) by saving it as `WMC_batch.ijm` (make sure it ends with `.ijm` and not `.txt`, it doesn't matter where you save it).
 
-      ~/opt/Fiji.app/ImageJ-linux64 --run 'paths="/data/gerhard/example_dir",suffix="tif",quit=true'
+## Usage
+
+The `WMC_batch.ijm` file cannot be installed as a macro, but must be run as script, which can be done in the following ways:
+
+* **(Recommended)** Using the macro editor
+  * Open ImageJ and go to *Plugins > Macros > Edit...* (or use the `[` keyboard shortcut).
+  * Open the `WMC_batch.ijm` file and click *Run* (bottom left)
+* Using the commandline:  
+  Use the syntax described [here](https://imagej.net/Scripting_Headless) (**NB** running with `--headless` doesn't work since `WMCSegment` requires a gui). Example uses:
+
+      ~/opt/Fiji.app/ImageJ-linux64 --run /home/gerhard/WMC_batch.ijm 'paths="/data/gerhard/example_dir",suffix="tif",quit=true'
       
   or for multi files/folders
 
-      ~/opt/Fiji.app/ImageJ-linux64 --run 'paths=["/data/gerhard/example_dir/test1.tif","/data/gerhard/example_dir/test2.tif"],quit=true'
+      ~/opt/Fiji.app/ImageJ-linux64 --run /home/gerhard/WMC_batch.ijm 'paths=["/data/gerhard/example_dir/test1.tif","/data/gerhard/example_dir/test2.tif"],quit=true'
       
   The `quit=true` option is to quit ImageJ after the job is done.
