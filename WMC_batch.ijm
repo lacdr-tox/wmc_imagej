@@ -99,7 +99,7 @@ for (i=0; i<paths.length; i++) {
         if (File.exists(path)) {
                 if (File.isDirectory(path)) {
                         print("Processing directory " + path);
-                        processFolder(path)
+                        processFolder(path);
                 } else {
                         processFile(path, false);	
                 }
