@@ -31,4 +31,4 @@ The `WMC_batch.ijm` file cannot be installed as a macro, but must be run as scri
   The `quit=true` option is to quit ImageJ after the job is done.
   
   **Notes:***
-  * The output folder does not copy the directory structure of the input folders, everything will be dumped in the same output folder, so files with the same names will probably be overwritten.
+  * The output folder (if set) does not copy the directory structure of the input folders, everything will be dumped in the same output folder, so files with the same names will probably be overwritten.
