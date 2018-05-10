@@ -4,7 +4,7 @@
 
 ## Installation
 
-**Make sure you use [Fiji](https://fiji.sc/), the ImageJ that ISSC installs may not work!**
+**Make sure you use [Fiji](https://fiji.sc/) with ImageJ2, the ImageJ that ISSC installs may not work!**
 
 * Install `WMC Segment` in ImageJ
 
