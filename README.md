@@ -29,3 +29,6 @@ The `WMC_batch.ijm` file cannot be installed as a macro, but must be run as scri
       ~/opt/Fiji.app/ImageJ-linux64 --run /home/gerhard/WMC_batch.ijm 'paths=["/data/gerhard/example_dir/test1.tif","/data/gerhard/example_dir/test2.tif"],quit=true'
       
   The `quit=true` option is to quit ImageJ after the job is done.
+  
+  **Notes:***
+  * The output folder does not copy the directory structure of the input folders, everything will be dumped in the same output folder, so files with the same names will probably be overwritten.
