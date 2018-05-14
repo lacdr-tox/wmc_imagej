@@ -1,5 +1,7 @@
 # wmc_imagej
 
+Authors: Gerhard Burger, Steven Wink
+
 **Work in progress, feel free to edit**
 
 ## Installation
