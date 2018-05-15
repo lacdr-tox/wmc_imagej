@@ -32,5 +32,22 @@ The `WMC_batch.ijm` file cannot be installed as a macro, but must be run as scri
       
   The `quit=true` option is to quit ImageJ after the job is done.
   
+* Using R:
+
+   From Linux:
+    
+    imageDir <-  '/home/callegarog/examples/ImageExpressTests/test'
+    parameters <- paste( "\", pattern=\"", pattern, "\", suffix=\"", suffix)
+    system(paste("~/Fiji.app/ImageJ-linux64 --ij2 --run ", macroDir, "/WMC_batch.ijm 'paths=\"",
+               imageDir, parameters, "\"'", sep=""))
+               
+   From Windows:
+ 
+    setwd(fijiDir)
+    parameters <- paste( "paths=", shQuote(imageDir, type = c("sh")),
+                         ",pattern=", shQuote(pattern, type = c("sh")))
+    system2('ImageJ-win64.exe', args = c('--ij2', '--run', "macros/WMC_batch.ijm",
+                                         parameters)) 
+
   **Notes:***
   * The output folder (if set) does not copy the directory structure of the input folders, everything will be dumped in the same output folder, so files with the same names will probably be overwritten.
