@@ -1,10 +1,12 @@
 # wmc_imagej
 
+Authors: Gerhard Burger, Steven Wink
+
 **Work in progress, feel free to edit**
 
 ## Installation
 
-**Make sure you use [Fiji](https://fiji.sc/) or [ImageJ2](https://imagej.net/ImageJ2), the ImageJ that ISSC installs may not work!**
+**Make sure you use [Fiji](https://fiji.sc/) with ImageJ2, the ImageJ that ISSC installs may not work!**
 
 * Install `WMC Segment` in ImageJ
 
@@ -29,3 +31,23 @@ The `WMC_batch.ijm` file cannot be installed as a macro, but must be run as scri
       ~/opt/Fiji.app/ImageJ-linux64 --run /home/gerhard/WMC_batch.ijm 'paths=["/data/gerhard/example_dir/test1.tif","/data/gerhard/example_dir/test2.tif"],quit=true'
       
   The `quit=true` option is to quit ImageJ after the job is done.
+  
+* Using R:
+
+   From Linux:
+    
+    imageDir <-  '/home/callegarog/examples/ImageExpressTests/test'
+    parameters <- paste( "\", pattern=\"", pattern, "\", suffix=\"", suffix)
+    system(paste("~/Fiji.app/ImageJ-linux64 --ij2 --run ", macroDir, "/WMC_batch.ijm 'paths=\"",
+               imageDir, parameters, "\"'", sep=""))
+               
+   From Windows:
+ 
+    setwd(fijiDir)
+    parameters <- paste( "paths=", shQuote(imageDir, type = c("sh")),
+                         ",pattern=", shQuote(pattern, type = c("sh")))
+    system2('ImageJ-win64.exe', args = c('--ij2', '--run', "macros/WMC_batch.ijm",
+                                         parameters)) 
+
+  **Notes:***
+  * The output folder (if set) does not copy the directory structure of the input folders, everything will be dumped in the same output folder, so files with the same names will probably be overwritten.
