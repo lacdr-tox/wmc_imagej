@@ -1,9 +1,9 @@
 #@ File[](label="Select image files/folders", style="both", persist=false) paths
 #@ String(label="File extension (eg. 'tif', leave empty to allow all files)", value="", persist=false) suffix
 #@ String(label="Filter RegExp (will override extension check)", value="", persist=false) pattern
-#@ BigDecimal(label="Artifact diameter for gaussian blurring", value=1.8, persist=false) g_size
 #@ Boolean(label="Use separate output directory?", value=false, persist=false) use_outdir
 #@ File(label="Output directory", value="", style="directory", persist=false) outdir
+#@ BigDecimal(label="Artifact diameter for gaussian blurring", value=1.8, persist=false) g_size
 #@ BigDecimal(label="Rolling ball radius", value=12, persist=false) r_size
 #@ BigDecimal(label="Noise tolerance level", value=20, persist=false) noise
 #@ BigDecimal(label="Intensity seed for background", value=100, persist=false) low_seed
