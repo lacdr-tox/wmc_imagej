@@ -44,10 +44,10 @@ function runWMCSegment(input, g_size, r_size, noise, low_seed, high_seed, low_bo
 		dir = outdir;
 	}
 	fname = stripExtension(File.getName(input));
-	ofname = dir + File.separator + fname + '_WMCMask.tiff';
+	ofname = dir + File.separator + fname + '_WMCMask.png';
 
 	//Save and close
-	saveAs("TIFF", ofname);
+	saveAs("PNG", ofname);
 	run("Close All");
 }
 
